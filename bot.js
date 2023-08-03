@@ -168,7 +168,7 @@ app.get("/api/download_mp3", async (req, res, next) => {
       }
     );
 
-    res.header("Content-Disposition", `attachment; filename="${title}.mp"`);
+    res.header("Content-Disposition", `attachment; filename="${title}.mp3"`);
     ytdl(url, {
       format: "mp3",
       filter: "audioonly",

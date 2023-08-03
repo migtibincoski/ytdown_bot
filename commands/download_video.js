@@ -6,14 +6,14 @@ const database = require("../database");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("download_audio")
+    .setName("download_video")
     .setDescription(
-      "Send me the YouTube link and i'll give you the audio to download."
+      "Send me the YouTube link and i'll give you the video to download."
     )
     .addStringOption((option) =>
       option
         .setName("youtube_url")
-        .setDescription("The YouTube video url to download the audio.")
+        .setDescription("The YouTube video url to download the video.")
         .setRequired(true)
     ),
   execute: async (interaction) => {
@@ -29,7 +29,6 @@ module.exports = {
       });
       return;
     }
-
     if (videoURL.includes("youtu.be/"))
       videoURL =
         "https://www.youtube.com/watch?v=" +
@@ -37,16 +36,16 @@ module.exports = {
 
     const request = await database.createURL(
       new URL(videoURL).searchParams.get("v"),
-      true
+      false
     );
     if (!request.error) {
       interaction.reply({
-        content: "Áudio baixado! Link para baixar: " + request.shortLink,
+        content: "Vídeo baixado! Link para baixar: " + request.shortLink,
       });
     } else {
       interaction.reply({
         content:
-          "Deu algum problema ao baixar o áudio. Aqui está o problema: ```\n" +
+          "Deu algum problema ao baixar o vídeo. Aqui está o problema: ```\n" +
           request.error +
           "```",
       });

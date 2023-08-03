@@ -101,6 +101,7 @@ const app = express();
 const database = require("./database");
 
 app.use(cors());
+app.set('view engine', 'ejs')
 
 app.listen(8080, () => {});
 
@@ -177,3 +178,7 @@ app.get("/api/download_mp3", async (req, res, next) => {
     console.error(err);
   }
 });
+
+app.get('/a265d7c96e5198da2e9336e524ca1e08.html', (req, res) => {
+  res.render("./shrtfly_verification.ejs")
+})

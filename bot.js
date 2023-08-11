@@ -56,6 +56,18 @@ client.once(Discord.Events.ClientReady, () => {
       console.error(error);
     }
   })();
+
+  setInterval(() => {
+    client.shard
+      .fetchClientValues("guilds.cache.size")
+      .then((results) => {
+        client.user.setActivity(
+          `${results.reduce((acc, guildCount) => acc + guildCount, 0)} guilds`,
+          { type: Discord.ActivityType.Watching }
+        );
+      })
+      .catch(console.error);
+  }, 5000);
 });
 
 client.on(Discord.Events.InteractionCreate, async (interaction) => {
@@ -101,7 +113,7 @@ const app = express();
 const database = require("./database");
 
 app.use(cors());
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs");
 
 app.listen(8080, () => {});
 

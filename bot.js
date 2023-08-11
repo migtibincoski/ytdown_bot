@@ -179,6 +179,6 @@ app.get("/api/download_mp3", async (req, res, next) => {
   }
 });
 
-app.get('/a265d7c96e5198da2e9336e524ca1e08.html', (req, res) => {
-  res.render("./shrtfly_verification.ejs")
-})
+app.get("/a265d7c96e5198da2e9336e524ca1e08.html", (req, res) => {
+  res.render("./shrtfly_verification.ejs");
+});
